@@ -1,2 +1,2 @@
-# javascript-array--bung
+# javascript-array--uebung
 verschiedene array-funktionen mit javascript
