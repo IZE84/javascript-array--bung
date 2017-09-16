@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Übung 💪</title>
+</head>
+<body>
+  <p><em>Psst: Schau in die JavaScript Konsole</em> 💁</p>
+  <script>
+
+    // Beispieldaten
+
+    const erfinder = [
+      { vorname: 'Albert', nachname: 'Einstein', geburtsjahr: 1879, sterbejahr: 1955 },
+      { vorname: 'Isaac', nachname: 'Newton', geburtsjahr: 1643, sterbejahr: 1727 },
+      { vorname: 'Galileo', nachname: 'Galilei', geburtsjahr: 1564, sterbejahr: 1642 },
+      { vorname: 'Marie', nachname: 'Curie', geburtsjahr: 1867, sterbejahr: 1934 },
+      { vorname: 'Johannes', nachname: 'Kepler', geburtsjahr: 1571, sterbejahr: 1630 },
+      { vorname: 'Nicolaus', nachname: 'Copernicus', geburtsjahr: 1473, sterbejahr: 1543 },
+      { vorname: 'Max', nachname: 'Planck', geburtsjahr: 1858, sterbejahr: 1947 },
+      { vorname: 'Katherine', nachname: 'Blodgett', geburtsjahr: 1898, sterbejahr: 1979 },
+      { vorname: 'Ada', nachname: 'Lovelace', geburtsjahr: 1815, sterbejahr: 1852 },
+      { vorname: 'Sarah E.', nachname: 'Goode', geburtsjahr: 1855, sterbejahr: 1905 },
+      { vorname: 'Lise', nachname: 'Meitner', geburtsjahr: 1878, sterbejahr: 1968 },
+      { vorname: 'Hanna', nachname: 'Hammarström', geburtsjahr: 1829, sterbejahr: 1909 }
+    ];
+
+    const personen = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+
+    // Array.prototype.filter()
+    // 1. Filter Erfinder-liste nach geburtsjahr 1500 bis 1599
+    const geburtsjahr15 = erfinder.filter(erfinder => (erfinder.geburtsjahr >= 1500 && erfinder.geburtsjahr < 1600))
+    console.table(geburtsjahr15);
+
+
+    // Array.prototype.map()
+    // 2. Arrayrückgabe der vollständigen Namen der Erfinder
+    const vollName = erfinder.map(erfinder => `${erfinder.vorname} ${erfinder.nachname}`);
+    console.log(vollName);
+
+
+    // Array.prototype.sort()
+    // 3. Sortieren der Erfinder von geburtstag, alt nach jung
+    const sortieren = erfinder.sort((a, b) => a.geburtsjahr > b.geburtsjahr ? 1 : -1);
+    console.table(sortieren);
+
+
+
+    // Array.prototype.reduce()
+    // 4. Wieviele Jahre haben die Erfinder zusammengerechnet gelebt??
+    const lebensJahre = erfinder.reduce((gesamt, erfinder) => {
+      return gesamt + (erfinder.sterbejahr - erfinder.geburtsjahr);
+    }, 0);
+
+    console.log(lebensJahre);
+
+    // 5. Erfinder sortieren nach gelebten Jahren
+    const alter = erfinder.sort(function(a, b){
+      const erstePerson = a.sterbejahr - a.geburtsjahr;
+      const zweitePerson = b.sterbejahr - b.geburtsjahr;
+      return erstePerson > zweitePerson ? -1 : 1;
+    });
+
+    console.table(alter);
+
+
+    // 6. Liste der Boulevards in Paris die 'de' im Namen enthalten
+    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    //const category = document.querySelector('.mw-category');
+    //const links = Array.from(category.querySelectorAll('a'));
+    //const de = links
+    //        .map(link => link.textContent)
+    //       .filter(streetName => streetName.includes('de'));
+
+
+
+    // 7. sort Übung
+    // Sortiere Personen alphabetisch nach nachname vorname
+    const alpha = personen.sort((last, next) => {
+      const [aLast, aFirst] = last.split(', ');
+      const [bLast, bFirst] = next.split(', ');
+      return aLast > bLast ? 1 : -1;
+      });
+    console.log(alpha);
+
+
+
+
+    // 8. Reduce Übung
+    // Zusammenfassen der Anzahl von einträgen
+    const daten = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'ivans-t4' ];
+
+    const transportmittel = daten.reduce(function(obj, item){
+      if(!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
+    console.log(transportmittel);
+
+
+
+  </script>
+</body>
+</html>
